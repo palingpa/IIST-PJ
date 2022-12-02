@@ -1,0 +1,160 @@
+@import "Global.css";
+.background{
+    overflow: hidden;
+    position: relative;
+    top: 60px;
+    width: 100%;
+    height: 679px;
+    background-image: url("../img/sculpture.jpg");
+    background-size: 100% 100%;
+    background-repeat: repeat;
+}
+    .cart{
+        width: 80%;
+        height: 600px;
+        position: relative;
+        top: 50px;
+        margin-left: 10%;
+        background-color: rgba(255, 255, 255, 0.7);
+        border: 1px solid gray;
+        border-radius: 10px;
+    }
+    .cart_header{
+        position: fixed;
+        height: 80px;
+        width: 80%;
+        border-bottom: 1px solid black;
+    }
+        .cart_header h3{
+            margin-top: 30px;
+            margin-left: 30px;
+            display: inline-block;
+            font-size: 20px;
+            font-weight: bolder;
+            font-family: 微软雅黑;
+        }
+        .total{
+            position: relative;
+            top: 2px;
+            left: 870px;
+            display: inline-block;
+            font-size: 28px;
+            font-weight: bolder;
+            font-family: 微软雅黑;
+        }
+        .cart_header input{
+            display: inline-block;
+            position: relative;
+            bottom: 3px;
+            left: 900px;
+            width: 70px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+    .cart_content{
+        margin-top: 100px;
+        height: 500px;
+        overflow-y: scroll;
+    }
+        .piece{
+            width: 90%;
+            height: 120px;
+            margin-left: 5%;
+            margin-top: 40px;
+            background-color: #efefef;
+            border-radius: 10px;
+        }
+            .img{
+                margin-top: 15px;
+                margin-left: 15px;
+                display: inline-block;
+            }
+            .img img{
+                width: 90px;
+                height: 90px;
+                max-width: 90px;
+                max-height: 90px;
+                object-fit: cover;//太关键啦！！！
+            }
+            .info{
+                display: inline-block;
+                height: 90px;
+                margin-left: 30px;
+                width: 710px;
+            }
+            .info .introduction{
+                font-style: italic;
+                position: relative;
+                bottom: 30px;
+            }
+            .info .artwork_author{
+                display: inline-block;
+                position: relative;
+                bottom: 56px;
+                left: 10px;
+            }
+            .info .artwork_name{
+                display: inline-block;
+                font-family: 微软雅黑;
+                font-weight: bolder;
+                font-size: 16px;
+                position: relative;
+                bottom: 56px;
+
+            }
+            .price{
+                display: inline-block;
+                color: orangered;
+                font-family: 微软雅黑;
+                font-size: 20px;
+                position: relative;
+                bottom: 70px;
+                width: 100px;
+            }
+            .button{
+                display: inline-block;
+                background-color: white;
+                position: relative;
+                left: 30px;
+                bottom: 50px;
+                width: 70px;
+                height: 35px;
+                border-radius: 5px;
+                text-align: center;
+            }
+            .button input{
+                text-align: center;
+                background-color: rgba(0,0,0,0);
+                position: relative;
+                top: 8px;
+            }
+            .button:hover{
+                background-color: #d8d8d8;
+                display: inline-block;
+                position: relative;
+                bottom: 50px;
+                width: 70px;
+                height: 35px;
+                border-radius: 5px;
+                text-align: center;
+            }
+.cart_null{
+    font-size: 20px;
+}
+
+.is_sold{
+    display: inline-block;
+    font-size: 13px;
+    color: red;
+    position: relative;
+    bottom: 80px;
+    left: 830px;
+}
+.is_changed{
+    font-size: 13px;
+    color: red;
+    position: relative;
+    bottom: 80px;
+    left: 830px;
+}

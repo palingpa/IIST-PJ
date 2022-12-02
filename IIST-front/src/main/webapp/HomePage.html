@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URArt-在线艺术品交易平台</title>
+    <link rel="stylesheet" type="text/css" href="css/HomePage.css">
+    <script type="text/javascript" src="js/HomePage.js"></script>
+    <script type="text/javascript" src="js/Global.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<script>Create();</script>
+    <div style="overflow-x: hidden;">
+        <div class="header_top">
+            <div class="logo">
+                <a href="/HomePage.html">
+                    <img src="img/logo(small).png" alt="URArt">
+                </a>
+                <strong class="header_title">—— 在线艺术品交易平台</strong>
+            </div>
+            <select class="search_select" id="search_type">
+                <option value="Name">艺术品</option>
+                <option value="Author">作者</option>
+            </select>
+            <div class="search">
+                <input type="text" autocomplete="off" name="HeaderSearch" id="HeaderSearch" placeholder="输入关键字进行搜索">
+                <img src="img/icon/search.png" class="icon" onclick="fake_search()">
+            </div>
+
+            <!--            未登陆前显示-->
+            <div class="personal" id="personal">
+                <img src="img/icon/user.png" class="icon">
+                <div class="content">
+                    <a href="/Details.html?paint_id=7">商品详情</a>
+                    &nbsp;|&nbsp;
+                    <a href="/Login.html">登录</a>
+                    &nbsp;|&nbsp;
+                    <a href="/Register.html">注册</a>
+                </div>
+            </div>
+            <!--            登陆后显示-->
+            <div class="personal_logined" id="personal_logined">
+                <a href="/Personal.html">
+                    <img src="img/icon/user.png" class="icon">
+                    <div class="username_box">
+                        <p id="UUserName">palingpa</p>
+                    </div>
+                </a>
+                <div class="content">
+                    <a href="/Details.html?paint_id=7">商品详情</a>
+                    &nbsp;|&nbsp;
+                    <a href="/Cart.html">购物车</a>
+                    &nbsp;|&nbsp;
+                    <a href="/Release.html">发布艺术品</a>
+                    &nbsp;|&nbsp;
+                    <a onclick="LogOut()" style="cursor: pointer;">退出登录</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="background">
+            <img src="img/cover/cover_1.png" alt="轮播图" class="img current">
+            <img src="img/cover/cover_2.png" alt="轮播图" class="img">
+            <img src="img/cover/cover_3.png" alt="轮播图" class="img">
+            <img src="img/cover/cover_4.png" alt="轮播图" class="img">
+            <img src="img/cover/cover_5.png" alt="轮播图" class="img">
+            <div class="lf"></div>
+            <div class="lr"></div>
+            <div class="dots">
+                <span class="square"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="recommendation">
+            <div class="line">
+                <span class="text">&nbsp;&nbsp;&nbsp;&nbsp;最新发布&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </div>
+            <hr/>
+            <div class="group">
+                <div class="artwork">
+                    <a id="Details_1" href=""><img src="img/artwork/知·花.jpg" alt="知·花" id="Img_1"></a>
+                    <div class="introduction">
+                        <p class="artwork_name" id="Name_1">知·花</p>
+                        <p class="artwork_author" id="Author_1">申振夏,</p>&nbsp;&nbsp;
+                        <p class="artwork_date" id="Date_1">2022.4.12</p>
+                        <p class="artwork_price" id="Price_1">￥13,160</p>
+
+                    </div>
+                </div>
+                <div class="artwork">
+                    <a id="Details_2"><img src="img/artwork/知·花.jpg" alt="知·花" id="Img_2"></a>
+                    <div class="introduction">
+                        <p class="artwork_name" id="Name_2">知·花</p>
+                        <p class="artwork_author" id="Author_2">申振夏,</p>&nbsp;&nbsp;
+                        <p class="artwork_date" id="Date_2">2022.4.12</p>
+                        <p class="artwork_price" id="Price_2">￥13,160</p>
+
+                    </div>
+                </div>
+                <div class="artwork">
+                    <a id="Details_3"><img src="img/artwork/知·花.jpg" alt="知·花" id="Img_3"></a>
+                    <div class="introduction">
+                        <p class="artwork_name" id="Name_3">知·花</p>
+                        <p class="artwork_author" id="Author_3">申振夏,</p>&nbsp;&nbsp;
+                        <p class="artwork_date" id="Date_3">2022.4.12</p>
+                        <p class="artwork_price" id="Price_3">￥13,160</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Copyright © 1998-2022 URArt urart.com All Rights Reserved. 备案号：渝ICP备15012807号-1</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    function GetHeader(){
+        if(GetCookies("Logined") === '1'){//已登录
+            document.getElementById("personal").style.cssText = "display: none;";
+            $.post("http://localhost/username.php", {
+                id: GetCookies("id")
+            }, function (resp){
+                document.getElementById("UUserName").innerText = resp.UserName;
+            }, "json")
+        }
+        else{//未登录
+            document.getElementById("personal_logined").style.cssText = "display: none;";
+        }
+    }
+    GetHeader();
+</script>

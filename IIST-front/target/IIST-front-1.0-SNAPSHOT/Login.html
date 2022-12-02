@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面-URArt</title>
+    <link rel="stylesheet" type="text/css" href="css/Login.css">
+    <script type="text/javascript"  src="js/Login.js"></script>
+    <script type="text/javascript" src="js/Global.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+<div>
+    <div class="header_top">
+        <div class="logo">
+            <a href="/HomePage.html">
+                <img src="img/logo(small).png" alt="URArt">
+            </a>
+            <strong class="header_title">—— 在线艺术品交易平台</strong>
+        </div>
+        <select class="search_select" id="search_type">
+            <option value="Name">艺术品</option>
+            <option value="Author">作者</option>
+        </select>
+        <div class="search">
+            <input type="text" autocomplete="off" name="HeaderSearch" id="HeaderSearch" placeholder="输入关键字进行搜索">
+            <img src="img/icon/search.png" class="icon" onclick="fake_search()">
+        </div>
+
+        <!--            未登陆前显示-->
+        <div class="personal" id="personal">
+            <img src="img/icon/user.png" class="icon">
+            <div class="content">
+                <a href="/Details.html?paint_id=7">商品详情</a>
+                &nbsp;|&nbsp;
+                <a href="/Login.html">登录</a>
+                &nbsp;|&nbsp;
+                <a href="/Register.html">注册</a>
+            </div>
+        </div>
+        <!--            登陆后显示-->
+        <div class="personal_logined" id="personal_logined">
+            <a href="/Personal.html">
+                <img src="img/icon/user.png" class="icon">
+                <div class="username_box">
+                    <p id="UUserName">palingpa</p>
+                </div>
+            </a>
+            <div class="content">
+                <a href="/Details.html?paint_id=7">商品详情</a>
+                &nbsp;|&nbsp;
+                <a href="/Cart.html">购物车</a>
+                &nbsp;|&nbsp;
+                <a href="/Release.html">发布艺术品</a>
+                &nbsp;|&nbsp;
+                <a onclick="LogOut()" style="cursor: pointer;">退出登录</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="background">
+        <form class="login_form" id="login_form">
+            <fieldset>
+                <br><br><br><br><br><br>
+                <p>
+                    <img src="img/icon/user.png" class="icon">
+                    <input type="text" id="UUserName" name="UserName" placeholder="请输入用户名或邮箱">
+                </p>
+                <p>
+                    <img src="img/icon/lock.png" class="icon">
+                    <input type="password" id="Pass" name="Pass" placeholder="请输入密码">
+                </p>
+
+                <div class="button_box">
+                    <input type="button" class="button" value="登录" id="login" name="login" onclick="Login()"/>
+                </div>
+
+                <hr/>
+
+                <a href="/Register.html">没有账号，点击注册</a>
+
+            </fieldset>
+        </form>
+
+    </div>
+    <div class="footer">
+        <p>Copyright © 1998-2022 URArt urart.com All Rights Reserved. 备案号：渝ICP备15012807号-1</p>
+    </div>
+
+
+</div>
+
+
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+    function GetHeader(){
+        if(GetCookies("Logined") === '1'){//已登录
+            document.getElementById("personal").style.cssText = "display: none;";
+            $.post("http://localhost/username.php", {
+                id: GetCookies("id")
+            }, function (resp){
+                document.getElementById("UUserName").innerText = resp.UserName;
+            }, "json")
+        }
+        else{//未登录
+            document.getElementById("personal_logined").style.cssText = "display: none;";
+        }
+    }
+    GetHeader();
+</script>
+

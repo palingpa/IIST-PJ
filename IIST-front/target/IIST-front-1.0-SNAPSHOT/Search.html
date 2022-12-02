@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索-URArt</title>
+    <link rel="stylesheet" type="text/css" href="css/Search.css">
+    <script type="text/javascript" src="js/Global.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/Search.js"></script>
+</head>
+
+<body>
+<div style="overflow: hidden">
+
+    <div class="header_top">
+        <div class="logo">
+            <a href="/HomePage.html">
+                <img src="img/logo(small).png" alt="URArt">
+            </a>
+            <strong class="header_title">—— 在线艺术品交易平台</strong>
+        </div>
+        <select class="search_select" id="search_type">
+            <option value="Name">艺术品</option>
+            <option value="Author">作者</option>
+        </select>
+        <div class="search">
+            <input type="text" autocomplete="off" name="HeaderSearch" id="HeaderSearch" placeholder="输入关键字进行搜索">
+            <img src="img/icon/search.png" class="icon" onclick="search()">
+        </div>
+
+        <!--            未登陆前显示-->
+        <div class="personal" id="personal">
+            <img src="img/icon/user.png" class="icon">
+            <div class="content">
+                <a href="/Details.html?paint_id=7">商品详情</a>
+                &nbsp;|&nbsp;
+                <a href="/Login.html">登录</a>
+                &nbsp;|&nbsp;
+                <a href="/Register.html">注册</a>
+            </div>
+        </div>
+        <!--            登陆后显示-->
+        <div class="personal_logined" id="personal_logined">
+            <a href="/Personal.html">
+                <img src="img/icon/user.png" class="icon">
+                <div class="username_box">
+                    <p id="UUserName">palingpa</p>
+                </div>
+            </a>
+            <div class="content">
+                <a href="/Details.html?paint_id=7">商品详情</a>
+                &nbsp;|&nbsp;
+                <a href="/Cart.html">购物车</a>
+                &nbsp;|&nbsp;
+                <a href="/Release.html">发布艺术品</a>
+                &nbsp;|&nbsp;
+                <a onclick="LogOut()" style="cursor: pointer;">退出登录</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="background">
+        <div class="header">
+            <p class="title">搜索结果：</p>
+            <form action="" method="post">
+                <select id="search_order">
+                    <option value="price">按价格排序</option>
+                    <option value="name">按名称排序</option>
+                    <option value="heat">按访问量排序</option>
+                </select>
+            </form>
+
+<!--            <div class="search-pages" id="page_null">-->
+<!--                <a onclick="first_page()"><<</a>-->
+<!--                <a onclick="pre_page()"><</a>-->
+<!--                <input id="current-page" onblur="jump();"-->
+<!--                       type="text" value="1" style="width: 20px; text-align: center; font-size: 16px; color: black">-->
+<!--                /<a id="total_page">1</a>-->
+<!--                <a onclick="next_page()">></a>-->
+<!--                <a onclick="last_page()">>></a>-->
+<!--            </div>-->
+            <div class="search-pages" id="page_null">
+                <a onclick="first_page()"><<</a>
+                <a onclick="pre_page()"><</a>
+                <ul id="page_list">
+                </ul>
+                <a onclick="next_page()">></a>
+                <a onclick="last_page()">>></a>
+            </div>
+
+        </div>
+
+        <div class="result">
+            <div id="piece_null">
+                暂无符合条件的艺术品
+            </div>
+<!--            克隆用的母体，用过的都说好-->
+            <div class="piece" id="piece_clone" style="display: none">
+                <a class="artwork_link"><img class="artwork_img" src="img/artwork/知·花.jpg" alt=""></a>
+                <div class="info">
+                    <p class="artwork_name">知 · 花</p>
+                    <p class="artwork_author">申振夏</p>
+                    <p class="artwork_price">￥13,160</p>
+                </div>
+                <div class="comment">
+                    <p class="artwork_comment">真好看啊真好看，真好看啊真好看真好看啊真好看</p>
+                </div>
+                <p class="artwork_heat">访问量：114</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    function GetHeader(){
+        if(GetCookies("Logined") === '1'){//已登录
+            document.getElementById("personal").style.cssText = "display: none;";
+            $.post("http://localhost/username.php", {
+                id: GetCookies("id")
+            }, function (resp){
+                document.getElementById("UUserName").innerText = resp.UserName;
+            }, "json")
+        }
+        else{//未登录
+            document.getElementById("personal_logined").style.cssText = "display: none;";
+        }
+    }
+    GetHeader();
+    search();
+    if_fake_search();
+</script>

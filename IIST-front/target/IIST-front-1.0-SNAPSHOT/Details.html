@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>知·花-URArt</title>
+    <link rel="stylesheet" type="text/css" href="css/Details.css">
+    <script type="text/javascript" src="js/Details.js"></script>
+    <script type="text/javascript" src="js/Global.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<script>Create()</script>
+<div>
+    <div class="header_top">
+        <div class="logo">
+            <a href="/HomePage.html">
+                <img src="img/logo(small).png" alt="URArt">
+            </a>
+            <strong class="header_title">—— 在线艺术品交易平台</strong>
+        </div>
+        <select class="search_select" id="search_type">
+            <option value="Name">艺术品</option>
+            <option value="Author">作者</option>
+        </select>
+        <div class="search">
+            <input type="text" autocomplete="off" name="HeaderSearch" id="HeaderSearch" placeholder="输入关键字进行搜索">
+            <img src="img/icon/search.png" class="icon" onclick="fake_search()">
+        </div>
+
+        <!--            未登陆前显示-->
+        <div class="personal" id="personal">
+            <img src="img/icon/user.png" class="icon">
+            <div class="content">
+                <a href="/Details.html?paint_id=7">商品详情</a>
+                &nbsp;|&nbsp;
+                <a href="/Login.html">登录</a>
+                &nbsp;|&nbsp;
+                <a href="/Register.html">注册</a>
+            </div>
+        </div>
+        <!--            登陆后显示-->
+        <div class="personal_logined" id="personal_logined">
+            <a href="/Personal.html">
+                <img src="img/icon/user.png" class="icon">
+                <div class="username_box">
+                    <p id="UUserName">palingpa</p>
+                </div>
+            </a>
+            <div class="content">
+                <a href="/Details.html?paint_id=7">商品详情</a>
+                &nbsp;|&nbsp;
+                <a href="/Cart.html">购物车</a>
+                &nbsp;|&nbsp;
+                <a href="/Release.html">发布艺术品</a>
+                &nbsp;|&nbsp;
+                <a onclick="LogOut()" style="cursor: pointer;">退出登录</a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</div>
+    <div class="content_box">
+        <div class="img_box">
+            <img src="" alt="艺术品图片" id="Img">
+        </div>
+        <div class="detail_box">
+            <div class="box_1">
+                <div class="line_1">
+                    <div style="width: 385px; display: inline-block">
+                        <p class="artwork_name" id="Name">知·花</p>
+                    </div>
+                    <div style="width: 135px; display: inline-block; text-align: right">
+                        <p class="artwork_heat" id="Heat">访问量：114514</p>
+                    </div>
+                </div>
+                <div class="line_2">
+                    <p class="artwork_author" id="Author">申振夏</p>
+                    <p>,</p>
+                    <p class="artwork_time" id="Year">2019</p>
+                </div>
+                <div class="line_3">
+                    <div style="width: 385px; display: inline-block">
+                        <p class="artwork_price" id="Price">￥13,160</p>
+                    </div>
+                    <div style="width: 135px; display: inline-block; text-align: right">
+                        <input type="image" src="img/icon/shopping.png" onclick="AddToCart()">
+                    </div>
+                </div>
+                <div class="detail_form">
+                    <table class="detail_table"  cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td colspan="2" class="header">详细信息</td>
+                        </tr>
+                        <tr>
+                            <td class="column">发布者：</td>
+                            <td class="detail" id="Pub">无</td>
+                        </tr>
+                        <tr>
+                            <td class="column">发布时间：</td>
+                            <td class="detail" id="Date">无</td>
+                        </tr>
+                        <tr>
+                            <td class="column">风格：</td>
+                            <td class="detail" id="Genre">无</td>
+                        </tr>
+                        <tr>
+                            <td class="column">时代：</td>
+                            <td class="detail" id="Era">无</td>
+                        </tr>
+                        <tr>
+                            <td class="column">长度：</td>
+                            <td class="detail" id="Length">无</td>
+                        </tr>
+                        <tr>
+                            <td class="column">宽度：</td>
+                            <td class="detail" id="Width">无</td>
+                        </tr>
+                        <tr>
+                            <td class="column">状态：</td>
+                            <td class="detail" id="Sold">无</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="box_2">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    function GetHeader(){
+        if(GetCookies("Logined") === '1'){//已登录
+            document.getElementById("personal").style.cssText = "display: none;";
+            $.post("http://localhost/username.php", {
+                id: GetCookies("id")
+            }, function (resp){
+                document.getElementById("UUserName").innerText = resp.UserName;
+            }, "json")
+        }
+        else{//未登录
+            document.getElementById("personal_logined").style.cssText = "display: none;";
+        }
+    }
+    GetHeader();
+</script>

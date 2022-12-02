@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.header_top{
+    z-index: 9999;
+    width: 100%;
+    position: fixed;
+    background-color: white;
+    height: 60px;
+    box-shadow: 0 1px 3px #999;
+}
+.logo{
+    display:inline-block;
+}
+.header_title{
+    position: relative;
+    bottom: 22px;
+    display:inline-block;
+    font-size: 16px;
+    color: gray;
+    font-family: "Microsoft YaHei UI";
+}
+.search{
+    left: 250px;
+    bottom: 23px;
+    display:inline-block;
+    height: 40px;
+    width: 350px;
+    position: relative;
+    border-style:solid;
+    border-width:1px;
+    border-color: gray;
+    border-radius: 5px;
+}
+#HeaderSearch{
+    position: relative;
+    left: 12px;
+    width: 300px;
+    height: 40px;
+}
+.search img{
+    position: relative;
+    top: 7px;
+    left: 10px;
+}
+.icon{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
+}
+a:link{
+    color: #000000;
+}
+a:visited{
+    color: #000000;
+}
+a:hover{
+    color: blueviolet;
+}
+.content{
+    display: inline-block;
+    font-size: 15px;
+    position: relative;
+    top: 10px;
+    left: 5px;
+}
+    .content a{
+        position: relative;
+        top: 2px;
+    }
+    .content .icon{
+        position: relative;
+        top: 4px;
+    }
+
+.personal{
+    display: inline-block;
+    height: 60px;
+    position: relative;
+    left: 540px;
+    bottom: 35px;
+}
+.personal .icon{
+    position: relative;
+    top: 18px;
+}
+
+.personal_logined{
+    display: inline-block;
+    height: 60px;
+    position: relative;
+    left: 340px;
+    bottom: 35px;
+}
+.personal_logined .icon{
+    position: relative;
+    top: 18px;
+}
+
+.username_box{
+    display: inline-block;
+    width: 100px;
+    font-size: 17px;
+    font-family: 微软雅黑;
+    color: #5c5c5c;
+    position: relative;
+    top: 11px;
+    margin-left: 3px;
+}
+
+
+.search_select{
+    z-index: 100;
+    display: inline-block;
+    width: 70px;
+    position: relative;
+    left: 248px;
+    bottom: 23px;
+    height: 40px;
+    border-style:solid;
+    border-width:1px;
+    border-color: gray;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#piece_null{
+    text-align: center;
+    position: relative;
+    top: 100px;
+    font-family: 微软雅黑;
+}

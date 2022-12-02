@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布艺术品-URArt</title>
+    <link rel="stylesheet" type="text/css" href="css/Release.css">
+    <script type="text/javascript"  src="js/Release.js"></script>
+    <script type="text/javascript" src="js/Global.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <div class="header_top">
+        <div class="logo">
+            <a href="/HomePage.html">
+                <img src="img/logo(small).png" alt="URArt">
+            </a>
+            <strong class="header_title">—— 在线艺术品交易平台</strong>
+        </div>
+        <select class="search_select" id="search_type">
+            <option value="Name">艺术品</option>
+            <option value="Author">作者</option>
+        </select>
+        <div class="search">
+            <input type="text" autocomplete="off" name="HeaderSearch" id="HeaderSearch" placeholder="输入关键字进行搜索">
+            <img src="img/icon/search.png" class="icon" onclick="fake_search()">
+        </div>
+
+        <!--            未登陆前显示-->
+        <div class="personal" id="personal">
+            <img src="img/icon/user.png" class="icon">
+            <div class="content">
+                <a href="/Details.html?paint_id=7">商品详情</a>
+                &nbsp;|&nbsp;
+                <a href="/Login.html">登录</a>
+                &nbsp;|&nbsp;
+                <a href="/Register.html">注册</a>
+            </div>
+        </div>
+        <!--            登陆后显示-->
+        <div class="personal_logined" id="personal_logined">
+            <a href="/Personal.html">
+                <img src="img/icon/user.png" class="icon">
+                <div class="username_box">
+                    <p id="UUserName">palingpa</p>
+                </div>
+            </a>
+            <div class="content">
+                <a href="/Details.html?paint_id=7">商品详情</a>
+                &nbsp;|&nbsp;
+                <a href="/Cart.html">购物车</a>
+                &nbsp;|&nbsp;
+                <a href="/Release.html">发布艺术品</a>
+                &nbsp;|&nbsp;
+                <a onclick="LogOut()" style="cursor: pointer;">退出登录</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="background">
+        <div class="release_box">
+            <form class="release_form">
+                <fieldset>
+                    <div class="img_box">
+                        <div class="preview_box">
+                            <img id='preview' src="" alt="">
+                        </div>
+                    </div>
+                    <div class="line_1">
+                        <input type="file" value="浏览.." accept="image/jpeg, image/png, image/jpg" id="Img" onchange="Load()">
+                    </div>
+                    <div class="line_3">
+                        <div class="box">
+                            <p class="title">名称:</p>
+                            <input type="text" class="short" id="Name" onblur="check_name()">
+                            <p class="check" id="name_null">名称不能为空</p>
+                        </div>
+                        <div class="box">
+                            <p class="title">作者:</p>
+                            <input type="text" class="short" id="Author" onblur="check_author()">
+                            <p class="check" id="author_null">作者不能为空</p>
+                        </div>
+                        <div class="box">
+                            <p class="title">价格:</p>
+                            <input type="text" class="short" id="Price" onblur="check_price()">
+                            <p class="check" id="price_null">价格不能为空</p>
+                            <p class="check" id="price_wrong">价格须为整数</p>
+                        </div>
+                        <div class="box">
+                            <p class="title">时代:</p>
+                            <input type="text" class="short" id="Era" onblur="check_era()">
+                            <p class="check" id="era_null">时代不能为空</p>
+                        </div>
+                    </div>
+                    <div class="line_3">
+                        <div class="box">
+                            <p class="title">年份:</p>
+                            <input type="text" class="short" id="Year" onblur="check_year()">
+                            <p class="check" id="year_null">年份不能为空</p>
+                            <p class="check" id="year_wrong">年份须为整数</p>
+                        </div>
+                        <div class="box">
+                            <p class="title">风格:</p>
+                            <input type="text" class="short" id="Genre" onblur="check_genre()">
+                            <p class="check" id="genre_null">风格不能为空</p>
+                        </div>
+                        <div class="box">
+                            <p class="title">长度:</p>
+                            <input type="text" class="short" id="Length" onblur="check_length()">
+                            <p class="check" id="length_null">长度不能为空</p>
+                            <p class="check" id="length_wrong">长度须为正数</p>
+                        </div>
+                        <div class="box">
+                            <p class="title">宽度:</p>
+                            <input type="text" class="short" id="Width" onblur="check_width()">
+                            <p class="check" id="width_null">宽度不能为空</p>
+                            <p class="check" id="width_wrong">宽度须为正数</p>
+                        </div>
+                    </div>
+                    <div class="line_4">
+                        <p class="title">简介:</p>
+                        <input type="text" class="introduction" id="Intro" onblur="check_intro()">
+                        <p class="check" id="intro_null">简介不能为空</p>
+                    </div>
+                    <div class="button_box">
+                        <input type="reset" value="重置" onclick="Reset()" class="button_" id="reset_button">
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="button" value="发布" onclick="Release()" class="button_" id="pub_button">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    function GetHeader(){
+        if(GetCookies("Logined") === '1'){//已登录
+            document.getElementById("personal").style.cssText = "display: none;";
+            $.post("http://localhost/username.php", {
+                id: GetCookies("id")
+            }, function (resp){
+                document.getElementById("UUserName").innerText = resp.UserName;
+            }, "json")
+        }
+        else{//未登录
+            document.getElementById("personal_logined").style.cssText = "display: none;";
+        }
+    }
+    GetHeader();
+    function GetType(){
+        if(location.href.indexOf("?") !== -1){//修改艺术品
+            document.getElementById("pub_button").value = "修改";//清除表单
+        }
+        let paint_id = Number(location.href.substring(location.href.indexOf("?")+10 , location.href.length));
+        let Img = '';
+        $.post("http://localhost/Details.php", {
+            id: paint_id
+        }, function(resp) {
+            Img = "data:image/png;base64," + resp.Img;
+            //为前端赋值
+            document.getElementById("preview").src = Img;
+            document.getElementById("Name").value = resp.data["Name"];
+            document.getElementById("Author").value = resp.data["Author"];
+            document.getElementById("Year").value = resp.data["Year"];
+            document.getElementById("Price").value = resp.data["Price"];
+            document.getElementById("Genre").value = resp.data["Genre"];
+            document.getElementById("Era").value = resp.data["Era"];
+            document.getElementById("Length").value = resp.data["Length"]
+            document.getElementById("Width").value = resp.data["Width"]
+            document.getElementById("Intro").value = resp.data["Intro"]
+        },"json")
+    }
+    GetType();
+</script>

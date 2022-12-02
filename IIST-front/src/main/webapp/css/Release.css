@@ -1,0 +1,94 @@
+@import "Global.css";
+.background{
+    background-image: url("../img/sculpture.jpg");
+    background-size: 100% 100%;
+    background-repeat: repeat;
+}
+.release_box{
+    width: 80%;
+    margin-left: 10%;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.img_box{
+    margin-top: 20px;
+    width: 100%;
+    height: 400px;
+    text-align: center;
+}
+    .preview_box{
+        width: 700px;
+        height: 320px;
+        margin-left: 260px;
+        position: relative;
+        top: 68px;
+    }
+        .preview_box img{
+            max-width: 700px;
+            max-height: 320px;
+        }
+.line_1{
+    margin-top: 8px;
+    width: 100%;
+    text-align: center;
+}
+    .line_1 input{
+        position: relative;
+        left: 30px;
+        bottom: 3px;
+    }
+
+.title{
+    display: inline-block;
+    font-weight: bolder;
+    font-size: 16px;
+    margin-right: 8px;
+}
+.artwork_name{
+    display: inline-block;
+    width: 750px;
+}
+.line_3{
+    height: 50px;
+    margin-top: 35px;
+    width: 100%;
+    text-align: center;
+}
+.line_3 .short{
+    height: 30px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 150px;
+}
+.line_4{
+    margin-top: 25px;
+    width: 100%;
+    text-align: center;
+}
+.introduction{
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 794px;
+    height: 60px;
+}
+
+.button_box{
+    width: 100%;
+    height: 64px;
+    text-align: center;
+}
+    .button_{
+        width: 60px;
+        height: 30px;
+        margin-top: 20px;
+    }
+
+.check{
+    display: none;
+}
+.box{
+    display: inline-block;
+    width: 210px;
+    height: 50px;
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车-URARt</title>
+    <link rel="stylesheet" type="text/css" href="css/Personal.css">
+    <script type="text/javascript" src="js/Personal.js"></script>
+    <script type="text/javascript" src="js/Global.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<script>Create()</script>
+<div style="overflow: hidden">
+    <div class="header_top">
+        <div class="logo">
+            <a href="/HomePage.html">
+                <img src="img/logo(small).png" alt="URArt">
+            </a>
+            <strong class="header_title">—— 在线艺术品交易平台</strong>
+        </div>
+        <select class="search_select" id="search_type">
+            <option value="Name">艺术品</option>
+            <option value="Author">作者</option>
+        </select>
+        <div class="search">
+            <input type="text" autocomplete="off" name="HeaderSearch" id="HeaderSearch" placeholder="输入关键字进行搜索">
+            <img src="img/icon/search.png" class="icon" onclick="fake_search()">
+        </div>
+
+        <!--            未登陆前显示-->
+        <div class="personal" id="personal">
+            <img src="img/icon/user.png" class="icon">
+            <div class="content">
+                <a href="/Details.html?paint_id=7">商品详情</a>
+                &nbsp;|&nbsp;
+                <a href="/Login.html">登录</a>
+                &nbsp;|&nbsp;
+                <a href="/Register.html">注册</a>
+            </div>
+        </div>
+        <!--            登陆后显示-->
+        <div class="personal_logined" id="personal_logined">
+            <a href="/Personal.html">
+                <img src="img/icon/user.png" class="icon">
+                <div class="username_box">
+                    <p id="UUserName">palingpa</p>
+                </div>
+            </a>
+            <div class="content">
+                <a href="/Details.html?paint_id=7">商品详情</a>
+                &nbsp;|&nbsp;
+                <a href="/Cart.html">购物车</a>
+                &nbsp;|&nbsp;
+                <a href="/Release.html">发布艺术品</a>
+                &nbsp;|&nbsp;
+                <a onclick="LogOut()" style="cursor: pointer;">退出登录</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="personal_header">
+        <img src="img/icon/user_black.png">
+        <p>个人中心</p>
+    </div>
+
+    <div class="personal_info">
+        <p class="personal_name" id="UserName">用户：无</p>
+        <p class="personal_phone" id="Phone">电话：无</p>
+        <p class="personal_email" id="Email">邮箱：无</p>
+        <p class="personal_address" id="Addr">地址：无</p>
+        <p class="personal_balance" id="Balance">余额：无</p>
+        <input type="button" value="充值" onclick="Recharge()">
+    </div>
+
+    <div class="personal_order">
+        <div class="order_header">
+            <p>我的订单：</p>
+        </div>
+        <table>
+            <tr id="order_null">
+                <td>暂无订单</td>
+            </tr>
+            <!--                    用于克隆的母体，用了都说好-->
+            <tr id="order_clone" style="display: none" onclick="">
+                <td class="order_id">订单编号：2022051701</td>
+                <td class="order_name">艺术品名称：知·花</td>
+                <td class="order_price">订单金额：￥13,160</td>
+                <td class="order_time">订单时间：2022.5.17</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="personal_publish">
+        <div class="publish_header">
+            <p>我发布的艺术品：</p>
+        </div>
+        <table>
+            <tr id="pub_null">
+                <td>暂无发布的艺术品</td>
+            </tr>
+            <!--                    用于克隆的母体，用了都说好-->
+            <tr id="pub_clone" style="display: none">
+                <td class="pub_name">艺术品名称：知·花</td>
+                <td class="pub_date">发布日期：2022.5.17
+                    <input class="pub_modify" type="button" value="编辑">
+                    <input class="pub_delete" type="button" value="删除">
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="personal_sold">
+        <div class="sold_header">
+            <p>售出的艺术品：</p>
+        </div>
+        <table>
+            <tr id="sold_null">
+                <td>暂无售出的艺术品</td>
+            </tr>
+            <!--                    用于克隆的母体，用了都说好-->
+            <tr id="sold_clone" style="display: none">
+                <td class="sold_name">艺术品名称：知·花</td>
+                <td class="sold_buyer">购买用户：2022051701</td>
+                <td class="sold_price">成交金额：￥13,160</td>
+                <td class="sold_date">成交时间：2022.5.17</td>
+            </tr>
+
+
+        </table>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+    function GetHeader(){
+        if(GetCookies("Logined") === '1'){//已登录
+            document.getElementById("personal").style.cssText = "display: none;";
+            $.post("http://localhost/username.php", {
+                id: GetCookies("id")
+            }, function (resp){
+                document.getElementById("UUserName").innerText = resp.UserName;
+            }, "json")
+        }
+        else{//未登录
+            document.getElementById("personal_logined").style.cssText = "display: none;";
+        }
+    }
+    GetHeader();
+</script>

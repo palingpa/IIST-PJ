@@ -1,0 +1,153 @@
+@import "Global.css";
+.background{
+    overflow: hidden;
+    background-image: url("../img/stone.jpeg");
+}
+    .header{
+        position: relative;
+        top: 60px;
+        height: 50px;
+    }
+        .header .title{
+            margin-left: 8%;
+            font-size: 22px;
+            font-family: 微软雅黑;
+            position: relative;
+            top: 27px;
+            width: 300px;
+        }
+        .header form{
+            display: inline-block;
+            position: relative;
+            left: 240px;
+        }
+        form select{
+            height: 28px;
+            width: 140px;
+            background-color: white;
+            border: #3e3e3e 1px solid;
+        }
+
+    .result{
+        width: 100%;
+        position: relative;
+        top: 60px;
+        height: 900px;
+    }
+
+    .piece{
+        display: inline-block;
+        margin-left: 158px;
+        margin-top: 50px;
+        height: 300px;
+        width: 300px;
+        background-color: white;
+        box-shadow: 5px 5px 10px gray;
+    }
+        .artwork_img{
+            display: inline-block;
+            width: 110px;
+            height: 110px;
+            margin-top: 30px;
+            margin-left: 30px;
+            max-height: 110px;
+            max-width: 110px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        .info{
+            margin-top: 28px;
+            display: inline-block;
+            margin-left: 20px;
+        }
+            .artwork_name{
+                font-family: 微软雅黑;
+                font-weight: bolder;
+                font-size: 17px;
+                position: relative;
+                bottom: 49px;
+            }
+            .artwork_author{
+                font-size: 16px;
+                position: relative;
+                bottom: 40px;
+            }
+            .artwork_price{
+                font-family: 微软雅黑;
+                font-weight: bolder;
+                font-size: 16px;
+                position: relative;
+                bottom: 30px;
+                right: 2px;
+            }
+        .comment{
+            margin-top: 15px;
+            margin-left: 30px;
+            width: 240px;
+            height: 80px;
+            background-color: #f0f0f0;
+        }
+            .artwork_comment{
+                font-size: 14px;
+                margin-left: 8px;
+                position: relative;
+                top: 10px;
+            }
+        .artwork_heat{
+            font-family: 微软雅黑;
+            margin-right: 30px;
+            margin-top: 15px;
+            text-align: right;
+        }
+
+
+
+
+
+
+
+
+
+
+
+.search-pages{
+    display: inline-block;
+    z-index: 100;
+    width: 400px;
+    text-align: center;
+    height: 40px;
+    position: absolute;
+    left: 80%;
+    transform: translateX(-50%);
+    margin-top: 12px;
+}
+.search-pages ul{
+    display: inline-block;
+}
+.search-pages li{
+    display: inline-block;
+    margin-left: 7px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+
+.search-pages a{
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.search-pages input{
+    font-size: 20px;
+    margin-left: 20px;
+    border-radius:1px;
+    border:1px solid #c8cccf;
+    color:#986655;
+    outline:0;
+    text-align:left;
+    /*    padding-left: 10px;*/
+    cursor: pointer;
+    box-shadow: 2px 2px 5px 1px #ccc;
+    flex:1;
+}
